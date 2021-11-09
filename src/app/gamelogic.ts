@@ -5,7 +5,7 @@ export class Field {
   public panels: Panel[] = [];
   afterend: boolean = false;
 
-  constructor(tiles: number, mines: number, inrows: number) {
+  constructor(tiles: number, inrows: number, mines: number) {
 
     for (let l = 0; l < tiles; l++) {                                                 //field generation
       this.panels[l] = new Panel(l);                                                            //each tile as object into an array.
@@ -67,16 +67,6 @@ export class Field {
 
   click(panel: Panel, inrows: number, tiles: number, mines: number) {               //onclick function
 
-    let count = 0;                                                                  //win game
-    for (let all = 0; all < tiles; all++) {                                                     //count through all unrevealed tiles
-      if (this.panels[all].revealed === false) {
-        count++
-      }
-    }
-    if (count === mines) {                                                          //execute winscreen when there are as many unrevealed tiles as bombs
-      setTimeout(function () { alert("Congratulations. You won"); }, 500);
-    }
-
     if (panel.value === "💣" && panel.flag === false) {                             //game over
       this.gameover(panel, tiles);
     }
@@ -100,6 +90,17 @@ export class Field {
           this.reveal(panel.id, inrows, tiles);
         }
       }
+    }
+
+    let count = 0;                                                                  //win game
+    for (let all = 0; all < tiles; all++) {                                                     //count through all unrevealed tiles
+      if (this.panels[all].revealed === false) {
+        count++
+      }
+    }
+    //console.log("closed panels: " + count);
+    if (count === mines) {                                                          //execute winscreen when there are as many unrevealed tiles as bombs
+      setTimeout(function () { alert("Congratulations. You won"); }, 500);
     }
   }
 
@@ -134,13 +135,13 @@ export class Field {
   gameover(panel: Panel, tiles: number) {                                           //Game Over function
     //console.log("gameover at: " + panel.id);
     panel.value = "💥";
-    for (let loop = 0; loop < tiles; loop++) {
-      this.panels[loop].revealed = true;
-      this.panels[loop].flag = false;
-    }
     if (this.afterend === false) {
+      for (let loop = 0; loop < tiles; loop++) {
+        this.panels[loop].revealed = true;
+        this.panels[loop].flag = false;
+      }
       this.afterend = true;
-      //setTimeout(function () { alert("Oh no. You exploded"); }, 500);
+      setTimeout(function () { alert("Oh no. You exploded"); }, 500);
     }
   }
 

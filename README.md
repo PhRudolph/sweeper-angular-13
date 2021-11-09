@@ -1,3 +1,31 @@
+Welcome to the Game Minesweeper.
+
+
+How to play?:
+You play by clicking somewhere on the field to reveal a tile.
+Under that tile can be a bomb, a number or nothing.
+
+If you click on nothing or a number, you are safe.
+The number indicates how many bombs are on adjacent tiles.
+If you click on a bomb, then you loose.
+You can always start a new game by clicking on the big smiley in the middle.
+
+
+How to win?:
+The goal is to reveal the entire minefield without stepping on a mine.
+So you win, if you revealed every tile that doesnt have a bomb.
+
+
+Features: 
+When you suspect that a tile has a bomb, you can put a flag on a field that makes it impossible for you to click on it on accident.
+It can always be removed again.
+
+If there is a whole bunch of nothing in a bigger area, dont worry. You wont need to click every tile. Instead it will be revealed automatically.
+
+A more advanced feature is that you can click on a number and when there is the same amount of flags around it, it will automatically reveal the tiles the adjacent tiles that dont have a flag.
+But be careful. If your flag is wrong, then it might reveal a bomb and you loose.
+
+
 # Sweeper
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.1.

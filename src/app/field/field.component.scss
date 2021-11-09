@@ -1,20 +1,22 @@
-button{
+button {
     width: 30px;
     height: 30px;
     font-size: 18px;
     border-width: 2px;
     float: left;
+    user-select: none;
+    -moz-user-select: none;
 }
-button:hover{
+button:hover {
     background-color: rgb(187, 186, 186);
 }
-button:hover:active{
+button:hover:active {
     background-color: rgb(75, 75, 75);
 }
-.bla{
+.bla {
     margin: auto;
 }
-.smiley{
+.smiley {
     background-color: rgb(199, 199, 199);
     margin: 20px calc(50% - 30px);
     width: 60px;
@@ -25,15 +27,38 @@ button:hover:active{
     user-select: none;
     -moz-user-select: none;
 }
-.smiley:hover{
+.smiley:hover {
     cursor: pointer;
 }
-.smiley:hover:active{
+.smiley:hover:active {
     border-style: inset;
 }
-.input{
-    margin: auto;
-    width: 180px;
+.input {
+    margin: 0 auto;
     background-color: whitesmoke;
     padding: 10px;
+    width: 260px;
+    border-radius: 3px;
+    
+    mat-form-field {
+        width: 60px;
+        margin: 0 5px;
+    }
+}
+.appl {
+    border-style: outset;
+    display: inline-block;
+    width: 26px;
+    padding: 2px;
+    border-radius: 2px;
+    margin: 0 0 0 14px;
+    user-select: none;
+    -moz-user-select: none;
+    font-size: 12px;
+}
+.appl:hover {
+    cursor: pointer;
+}
+.appl:hover:active {
+    border-style: inset;
 }
