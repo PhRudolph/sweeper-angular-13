@@ -1,0 +1,24 @@
+<div class="bla" [ngStyle]="{'width': 30 * panelinrows + 'px' }">
+    <div class="input" >
+        <mat-form-field>
+            <mat-label>rows</mat-label>
+            <input matInput #rows />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>colums</mat-label>
+            <input matInput #cols />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>mines</mat-label>
+            <input matInput #mines />
+        </mat-form-field>
+    </div>
+    <div class="smiley" (click)="nw()">😀</div>
+    <button (click)="clicked(panel)" (contextmenu)="flagged(panel)" *ngFor="let panel of board.panels"
+        [ngStyle]="{'border-style': panel.revealed === true ? 'inset' : 'outset'}">
+        <div *ngIf="panel.revealed === true">{{panel.value}}</div>
+        <div *ngIf="panel.revealed === false">
+            <div *ngIf="panel.flag === true">🚩</div>
+        </div>
+    </button>
+</div>
