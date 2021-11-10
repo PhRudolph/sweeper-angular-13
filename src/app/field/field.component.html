@@ -1,26 +1,47 @@
 <div class="bla" [ngStyle]="{'width': 30 * panelinrows + 'px' }">
-    <div class="input" >
+    <div class="input">
         <div style="font-size: 11px; text-align: center;">Here you can create your own minefield.</div>
         <mat-form-field>
             <mat-label>rows</mat-label>
-            <input matInput #rows (keypress)="onkey($event)" />
+            <input matInput #rows (keypress)="onkey($event)" value="10" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>colums</mat-label>
-            <input matInput #cols (keypress)="onkey($event)" />
+            <input matInput #cols (keypress)="onkey($event)" value="10" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>mines</mat-label>
-            <input matInput #mines (keypress)="onkey($event)" />
+            <input matInput #mines (keypress)="onkey($event)" value="15" />
         </mat-form-field>
-        <div class="appl" (click)="input(rows.value, cols.value, mines.value)" >apply</div>
+        <div class="appl" (click)="input(rows.value, cols.value, mines.value)">apply</div>
     </div>
-    <div class="smiley" (click)="nw()" >😀</div>
-    <button (click)="clicked(panel)" (contextmenu)="flagged(panel)" *ngFor="let panel of board.panels"
-        [ngStyle]="{'border-style': panel.revealed === true ? 'inset' : 'outset'}">
-        <div *ngIf="panel.revealed === true">{{panel.value}}</div>
-        <div *ngIf="panel.revealed === false">
-            <div *ngIf="panel.flag === true">🚩</div>
+    <div class="headwrap">
+        <div class="clockwrap">
+            <div class="clock">
+                <div *ngIf="hrtest > 0">{{hours}}:</div>
+                <div>{{minutes}}:{{seconds}}</div>
+            </div>
         </div>
-    </button>
+        <div class="smiley" (click)="nw()">
+            <div [hidden]="mousd === true || board.afterend === true">😐</div>
+            <div [hidden]="board.afterend === false || board.winner === true">😖</div>
+            <div [hidden]="mousd === false || board.afterend === true" >😬</div>
+            <div [hidden]="board.winner === false" >😀</div>
+        </div>
+        <div class="mines"><div (click)="stoptimer()">Stop the timer manually</div></div>
+    </div>
+    <div class="field">
+        <button (click)="clicked(panel)" (mousedown)="mousedown()" (mouseup)="mouseup()" (contextmenu)="flagged(panel)"
+            *ngFor="let panel of board.panels"
+            [ngStyle]="{'border-style': panel.revealed === true ? 'inset' : 'outset'}">
+            <div *ngIf="panel.revealed === true">
+                <div class="value"
+                    [ngStyle]="{'background-color': panel.flag === true && panel.value === '💣' ? 'green' : 'default'}"
+                    [ngStyle]="{'background-color': panel.flag === true && panel.value !== '💣' ? 'red' : 'default'}">
+                    {{panel.value}}</div>
+            </div>
+            <!--<div style="font-size: 10px; float: left;">{{panel.id}}</div>-->
+            <div *ngIf="panel.flag === true && panel.revealed === false">🚩</div>
+        </button>
+    </div>
 </div>

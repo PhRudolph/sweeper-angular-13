@@ -1,5 +1,5 @@
 export class Panel{         //default panel properties
-    value = "";
+    value = " ";
     revealed = false;
     adjmines = 0;
     flag = false;

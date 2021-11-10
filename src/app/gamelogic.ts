@@ -4,6 +4,9 @@ export class Field {
 
   public panels: Panel[] = [];
   afterend: boolean = false;
+  gameinprogress: boolean = false;
+  winner: boolean = false;
+
 
   constructor(tiles: number, inrows: number, mines: number) {
 
@@ -14,6 +17,7 @@ export class Field {
     for (let lp = 0; lp < mines; lp++) {                                              //bomb generation
       const id = Math.floor(Math.random() * tiles);                                             //generate random id and put a bomb there
       this.panels[id].value = "💣";
+      console.log(+lp+ +1 + "th mine at: " + id);
     }
 
     for (let tilelop = 0; tilelop < tiles; tilelop++) {                               //adjacency generation:
@@ -67,13 +71,18 @@ export class Field {
 
   click(panel: Panel, inrows: number, tiles: number, mines: number) {               //onclick function
 
+    if (this.gameinprogress === false && this.afterend === false) {
+      this.gameinprogress = true;
+      this.winner = false;
+    }
+
     if (panel.value === "💣" && panel.flag === false) {                             //game over
       this.gameover(panel, tiles);
     }
 
     if (panel.revealed === false && panel.flag === false && panel.value !== "💣") {                         //revealing:
       panel.revealed = true;
-      if (panel.value === "") {                                                                 //when clicking an empty field
+      if (panel.value === " ") {                                                                 //when clicking an empty field
         this.reveal(panel.id, inrows, tiles);
       }
     }
@@ -93,14 +102,17 @@ export class Field {
     }
 
     let count = 0;                                                                  //win game
-    for (let all = 0; all < tiles; all++) {                                                     //count through all unrevealed tiles
+    for (let all = 0; all < tiles; all++) {                                                     //on every click count through all unrevealed tiles
       if (this.panels[all].revealed === false) {
         count++
       }
     }
     //console.log("closed panels: " + count);
-    if (count === mines) {                                                          //execute winscreen when there are as many unrevealed tiles as bombs
+    if (count === mines) {                                                                      //execute winscreen when there are as many unrevealed tiles as bombs
       setTimeout(function () { alert("Congratulations. You won"); }, 500);
+      this.gameinprogress = false;
+      this.afterend = true;
+      this.winner = true;
     }
   }
 
@@ -117,7 +129,7 @@ export class Field {
         if (this.panels[currad].revealed === false && this.panels[currad].flag === false) {
           this.panels[currad].revealed = true;
           //console.log("revealed: " + currad);
-          if (this.panels[currad].value === "") {
+          if (this.panels[currad].value === " ") {
             //console.log("and pushed " + currad)
             torev.push(currad);                                                                 //push certain ids of adjacent tiles to the array
           }
@@ -138,10 +150,9 @@ export class Field {
     if (this.afterend === false) {
       for (let loop = 0; loop < tiles; loop++) {
         this.panels[loop].revealed = true;
-        this.panels[loop].flag = false;
       }
+      this.gameinprogress = false;
       this.afterend = true;
-      setTimeout(function () { alert("Oh no. You exploded"); }, 500);
     }
   }
 

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Field } from '../gamelogic';
 import { Panel } from '../panel';
 
-
 @Component({
   selector: 'field',
   templateUrl: './field.component.html',
@@ -10,14 +9,21 @@ import { Panel } from '../panel';
 })
 export class FieldComponent implements OnInit {
 
+  board!: Field;
+  panel!: Panel;
+
+
   rows: number = 10;
   panelinrows: number = 10;
   minesnum: number = 15;
 
+  inter: any;
+  hours: string = "00";
+  minutes: string = "00";
+  seconds: string = "00";
+  hrtest: number = 0;
 
-
-  board!: Field;
-  panel!: Panel;
+  mousd: boolean = false;
 
   panelsnum: number = +this.rows * +this.panelinrows;
 
@@ -38,7 +44,7 @@ export class FieldComponent implements OnInit {
         console.log("mines: " + minesn);
     */
     if (panelsn > 0 && colsn > 0 && rowsn > 0) {
-      if (rowsn > 5 || colsn > 5) {
+      if (rowsn >= 10 && colsn >= 10) {
         if (panelsn >= minesn) {
           if (panelsn === minesn) {
             alert("No");
@@ -49,7 +55,7 @@ export class FieldComponent implements OnInit {
             this.nw();
           }
         } else { alert("Oops. You tried to put " + minesn + " mines on a field with just " + panelsn + " tiles"); }
-      } else { alert("Your field must at least be 5 by 5 or its not much of a field"); }
+      } else { alert("Your field must at least be 10 by 10 or its not much of a field.(And its messing up the gui)"); }
     } else { alert("You need rows, colums and mines to create a Minefield"); }
 
   }
@@ -62,12 +68,21 @@ export class FieldComponent implements OnInit {
   }
 
   clicked(panel: Panel) {
+    if (this.board.gameinprogress === false && this.board.afterend === false) {
+      this.starttimer();
+    }
+
     this.board.click(panel, this.panelinrows, this.panelsnum, this.minesnum);
+
+    if (this.board.gameinprogress === false && this.board.afterend === true) {
+      this.stoptimer();
+    }
   }
   flagged(panel: Panel) {
     this.board.flag(panel);
     return false;
   }
+
 
   onkey(event: any): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
@@ -77,6 +92,37 @@ export class FieldComponent implements OnInit {
     return true;
   }
 
+  starttimer() {
+    let sec = 0;
+    let min = 0;
+    let hrs = 0;
+    this.inter = setInterval(() => {
+      sec++;
+      if (sec === 60) {
+        sec = sec - 60;
+        min++;
+      }
+      if (min === 60) {
+        min = min - 60
+        hrs++
+      }
+      this.seconds = (sec < 10) ? '0' + sec.toString() : sec.toString();
+      this.minutes = (min < 10) ? '0' + min.toString() : min.toString();
+      this.hours = (hrs < 10) ? '0' + hrs.toString() : hrs.toString();
+      this.hrtest = hrs;
+    }, 1000);
+  }
+  stoptimer() {
+    clearInterval(this.inter);
+  }
+  mousedown() {
+    this.mousd = true;
+  }
+  mouseup() {
+    this.mousd = false;
+  }
+
   ngOnInit(): void {
+
   }
 }
