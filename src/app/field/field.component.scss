@@ -1,0 +1,105 @@
+.bla {
+    margin: 0 auto;
+}
+
+.input {
+    margin: 0 auto;
+    background-color: whitesmoke;
+    padding: 10px;
+    width: 260px;
+    border-radius: 3px;
+
+    mat-form-field {
+        width: 60px;
+        margin: 0 5px;
+    }
+}
+.appl {
+    border-style: outset;
+    display: inline-block;
+    width: 26px;
+    padding: 2px;
+    border-radius: 2px;
+    margin: 0 0 0 14px;
+    user-select: none;
+    -moz-user-select: none;
+    font-size: 12px;
+    border-width: 2px;
+}
+.appl:hover {
+    cursor: pointer;
+}
+.appl:hover:active {
+    border-style: inset;
+}
+
+.headwrap {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+.clockwrap {
+    width: 200px;
+    text-align: center;
+}
+.clock {
+    background-color: whitesmoke;
+    font-size: 30px;
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.smiley {
+    background-color: rgb(199, 199, 199);
+    margin: 0 20px;
+    width: 60px;
+    height: 55px;
+    text-align: center;
+    font-size: 40px;
+    border-radius: 5px;
+    border-style: outset;
+    user-select: none;
+    -moz-user-select: none;
+}
+.smiley:hover {
+    cursor: pointer;
+}
+.smiley:hover:active {
+    border-style: inset;
+}
+.mineswrap {
+    width: 100px;
+    display: flex;
+    align-items: center;
+}
+.mines{
+    border-radius: 5px;
+    width: 100%;
+    background-color: whitesmoke;
+    font-size: 40px;
+    height: 50px;
+    padding: 5px;
+    text-align: center;
+}
+
+button {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    border-width: 2px;
+    float: left;
+    user-select: none;
+    -moz-user-select: none;
+}
+button:hover {
+    background-color: rgb(187, 186, 186);
+}
+button:hover:active {
+    background-color: rgb(75, 75, 75);
+}
+.value {
+    border-radius: 5px;
+    width: 22px;
+}

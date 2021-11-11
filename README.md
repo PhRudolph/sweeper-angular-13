@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 Welcome to the Game Minesweeper.
 
 
@@ -20,7 +18,8 @@ So you win, if you revealed every tile that doesnt have a bomb.
 
 
 Features: 
-When you suspect that a tile has a bomb, you can put a flag on a field that makes it impossible for you to click on it on accident.
+
+When you suspect that a tile has a bomb, you can put a flag on a field with right click that makes it impossible for you to click on it on accident.
 It can always be removed again.
 
 If there is a whole bunch of nothing in a bigger area, dont worry. You wont need to click every tile. Instead it will be revealed automatically.
@@ -29,10 +28,10 @@ A more advanced feature is that you can click on a number and when there is the 
 But be careful. If your flag is wrong, then it might reveal a bomb and you loose.
 
 
->>>>>>> Stashed changes
 # Sweeper
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.1.
+Youll also need Angular Material version 13.0.0.
 
 ## Development server
 
