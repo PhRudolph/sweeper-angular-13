@@ -15,7 +15,7 @@ export class FieldComponent implements OnInit {
 
   rows: number = 10;
   panelinrows: number = 10;
-  minesnum: number = 10;
+  minesnum: number = 15;
 
   inter: any;
   hours: string = "00";
@@ -24,6 +24,8 @@ export class FieldComponent implements OnInit {
   hrtest: number = 0;
 
   mousd: boolean = false;
+
+  difficulty: string = "easy";
 
   panelsnum: number = +this.rows * +this.panelinrows;
 
@@ -50,8 +52,8 @@ export class FieldComponent implements OnInit {
             alert("No");
           } else {
             let lottamines: boolean = true;
-            if (+panelsn / +2 < minesn) {lottamines = confirm("These are a LOT of mines. Your chance of exploding on the first click is bigger than 50%. Are you sure that you want that?");}
-            if(lottamines === true){
+            if (+panelsn / +2 < minesn) { lottamines = confirm("These are a LOT of mines. Your chance of exploding on the first click is bigger than 50%. Are you sure that you want that?"); }
+            if (lottamines === true) {
               this.panelsnum = panelsn;
               this.panelinrows = colsn;
               this.minesnum = minesn;
@@ -66,9 +68,11 @@ export class FieldComponent implements OnInit {
 
   nw() {
     console.log("Number of Panels: " + this.panelsnum);
-    console.log("Number of Mines: " + this.minesnum)
+    console.log("Number of Mines: " + this.minesnum);
+    this.stoptimer();
     this.board = new Field(this.panelsnum, this.panelinrows, this.minesnum);
     this.board.afterend = false;
+
   }
 
   clicked(panel: Panel) {
@@ -124,6 +128,29 @@ export class FieldComponent implements OnInit {
   }
   mouseup() {
     this.mousd = false;
+  }
+  diff(rows: string, cols: string, mines: string) {
+    let rowsn: number = parseInt(rows);
+    let colsn: number = parseInt(cols);
+    let minesn: number = parseInt(mines);
+
+    let panelsn: number = +rowsn * +colsn;
+
+    if (minesn < +panelsn * +0.04) {
+      this.difficulty = "too easy";
+    }
+    else if (minesn < +panelsn * +0.10) {
+      this.difficulty = "easy";
+    }
+    else if (minesn < +panelsn * +0.2) {
+      this.difficulty = "medium";
+    }
+    else if (minesn < +panelsn * +0.3) {
+      this.difficulty = "hard";
+    }
+    else {
+      this.difficulty = "extreme";
+    }
   }
 
   ngOnInit(): void {

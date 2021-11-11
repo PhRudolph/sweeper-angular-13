@@ -11,9 +11,10 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>mines</mat-label>
-            <input matInput #mines (keypress)="onkey($event)" value="15" />
+            <input matInput #mines (keypress)="onkey($event)" (keyup)="diff(rows.value, cols.value, mines.value)" value="15" />
         </mat-form-field>
         <div class="appl" (click)="input(rows.value, cols.value, mines.value)">apply</div>
+        <div style="font-size: 12px; text-align: center;">Difficulty: {{difficulty}}</div>
     </div>
     <div class="headwrap">
         <div class="clockwrap">
