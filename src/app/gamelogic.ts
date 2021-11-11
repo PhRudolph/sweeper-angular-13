@@ -16,7 +16,7 @@ export class Field {
 
     for (let lp = 0; lp < mines; lp++) {                                              //bomb generation
       const id = Math.floor(Math.random() * tiles);                                             //generate random id and put a bomb there
-      if(this.panels[id].value === "💣"){
+      if (this.panels[id].value === "💣") {
         lp--;
       }
       this.panels[id].value = "💣";
@@ -43,22 +43,22 @@ export class Field {
 
   getadjacent(tile: number, inrows: number, tiles: number) {                          //function that calculates adjacent tiles
 
-    let top = +tile - +inrows;                                                                  //declaring pseudo adjacent tiles
-    let topright = +tile - +inrows + +1;
-    let right = +tile + +1;
-    let botright = +tile + +inrows + +1;
-    let bot = +tile + +inrows;
-    let botleft = +tile + +inrows - +1;
-    let left = +tile - +1;
-    let topleft = +tile - +inrows - +1;
+    let top = tile - inrows;                                                                  //declaring pseudo adjacent tiles
+    let topright = tile - inrows + 1;
+    let right = tile + 1;
+    let botright = tile + inrows + 1;
+    let bot = tile + inrows;
+    let botleft = tile + inrows - 1;
+    let left = tile - 1;
+    let topleft = tile - inrows - 1;
     let adjacents = [top, topright, right, botright, bot, botleft, left, topleft];
     let trueadjacents = [];
 
     for (let loop = 0; loop < 8; loop++) {
       let curradjtile = adjacents[loop];                                              //The following if statements exclude imaginary tiles meaning adjacent tiles that are out of bound or behind a line break:
       if (curradjtile >= 0 && curradjtile < tiles) {                                            //if the tile is on the board
-        if (+tile % +inrows === 0 && +curradjtile % +inrows === +inrows - +1) { } else {        //unless the tile is on the left edge and its adjacent tile on the right edge
-          if (+tile % +inrows === +inrows - +1 && +curradjtile % +inrows === 0) { } else {      //vice versa
+        if (tile % inrows === 0 && curradjtile % inrows === inrows - 1) { } else {        //unless the tile is on the left edge and its adjacent tile on the right edge
+          if (tile % inrows === inrows - 1 && curradjtile % inrows === 0) { } else {      //vice versa
             trueadjacents.push(curradjtile)                                                     //push it as a true adjacent tile
           }
         }
@@ -139,6 +139,7 @@ export class Field {
 
   gameover(panel: Panel, tiles: number) {                                             //Game Over function
     panel.value = "💥";
+
     if (this.afterend === false) {
       for (let loop = 0; loop < tiles; loop++) {
         this.panels[loop].revealed = true;

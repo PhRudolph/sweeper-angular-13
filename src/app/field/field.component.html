@@ -1,20 +1,24 @@
 <div class="bla" [ngStyle]="{'width': 30 * panelinrows + 'px' }">
     <div class="input">
-        <div style="font-size: 11px; text-align: center;">Here you can create your own minefield.<br>default: 10/10/15</div>
+        <div style="font-size: 11px; text-align: center;">Here you can create your own minefield.<br>default: 10/10/15
+        </div>
         <mat-form-field>
             <mat-label>rows</mat-label>
-            <input matInput #rows (keypress)="onkey($event)" value="10" />
+            <input matInput #rows (keypress)="onkey($event, rows.value, cols.value, mines.value)" (keyup)="diff(rows.value, cols.value, mines.value)"
+                value="10" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>colums</mat-label>
-            <input matInput #cols (keypress)="onkey($event)" value="10" />
+            <input matInput #cols (keypress)="onkey($event, rows.value, cols.value, mines.value)" (keyup)="diff(rows.value, cols.value, mines.value)"
+                value="10" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>mines</mat-label>
-            <input matInput #mines (keypress)="onkey($event)" (keyup)="diff(rows.value, cols.value, mines.value)" value="15" />
+            <input matInput #mines (keypress)="onkey($event, rows.value, cols.value, mines.value)" (keyup)="diff(rows.value, cols.value, mines.value)"
+                value="15" />
         </mat-form-field>
         <div class="appl" (click)="input(rows.value, cols.value, mines.value)">apply</div>
-        <div style="font-size: 12px; text-align: center;">Difficulty: {{difficulty}}</div>
+        <div style="font-size: 12px; text-align: center;"> Difficulty: {{difficulty}}</div>
     </div>
     <div class="headwrap">
         <div class="clockwrap">
@@ -26,22 +30,26 @@
         <div class="smiley" (click)="nw()">
             <div [hidden]="mousd === true || board.afterend === true">😐</div>
             <div [hidden]="board.afterend === false || board.winner === true">😖</div>
-            <div [hidden]="mousd === false || board.afterend === true" >😬</div>
-            <div [hidden]="board.winner === false" >😀</div>
+            <div [hidden]="mousd === false || board.afterend === true">😬</div>
+            <div [hidden]="board.winner === false">😀</div>
         </div>
-        <div class="mineswrap"><div class="mines"><div style="font-size: 10px;">mines left:</div>{{board.minesleft}}</div></div>
+        <div class="mineswrap">
+            <div class="mines">
+                <div style="font-size: 10px;">mines left:</div>{{board.minesleft}}
+            </div>
+        </div>
     </div>
     <div class="field">
         <button (click)="clicked(panel)" (mousedown)="mousedown()" (mouseup)="mouseup()" (contextmenu)="flagged(panel)"
             *ngFor="let panel of board.panels"
             [ngStyle]="{'border-style': panel.revealed === true ? 'inset' : 'outset'}">
-            <div *ngIf="panel.revealed === true">
+            <div *ngIf="panel.revealed === true" class="reveld"
+                [ngStyle]="{'background-color': panel.flag === true && panel.value === '💣' ? 'green' : 'default'}">
                 <div class="value"
-                    [ngStyle]="{'background-color': panel.flag === true && panel.value === '💣' ? 'green' : 'default'}"
                     [ngStyle]="{'background-color': panel.flag === true && panel.value !== '💣' ? 'red' : 'default'}">
-                     {{panel.value}}</div>
+                     {{panel.value}}
+                </div>
             </div>
-            <!--<div style="font-size: 10px; float: left;">{{panel.id}}</div>-->
             <div *ngIf="panel.flag === true && panel.revealed === false">🚩</div>
         </button>
     </div>
