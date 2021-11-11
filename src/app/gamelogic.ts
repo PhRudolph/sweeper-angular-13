@@ -102,7 +102,7 @@ export class Field {
     let count = 0;                                                                    //win game
     for (let all = 0; all < tiles; all++) {                                                     //on every click count through all unrevealed tiles
       if (this.panels[all].revealed === false) {
-        count++
+        count++;
       }
     }
     if (count === mines) {                                                                      //execute winscreen when there are as many unrevealed tiles as bombs

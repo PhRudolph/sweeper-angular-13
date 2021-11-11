@@ -26,8 +26,7 @@ export class FieldComponent implements OnInit {
 
   mousd: boolean = false;
 
-  difficulty: string = "medium(default)";
-
+  difficulty: string = "medium";
 
 
   constructor() {
@@ -109,8 +108,8 @@ export class FieldComponent implements OnInit {
         min++;
       }
       if (min === 60) {
-        min = min - 60
-        hrs++
+        min = min - 60;
+        hrs++;
       }
       this.seconds = (sec < 10) ? '0' + sec.toString() : sec.toString();
       this.minutes = (min < 10) ? '0' + min.toString() : min.toString();
@@ -152,7 +151,7 @@ export class FieldComponent implements OnInit {
       } else if (minesn < panelsn) {
         this.difficulty = "insanity";
       } else {
-        this.difficulty = "unavailable"
+        this.difficulty = "unavailable";
       }
     }
 

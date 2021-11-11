@@ -4,18 +4,18 @@
         </div>
         <mat-form-field>
             <mat-label>rows</mat-label>
-            <input matInput #rows (keypress)="onkey($event, rows.value, cols.value, mines.value)" (keyup)="diff(rows.value, cols.value, mines.value)"
-                value="10" />
+            <input matInput #rows (keypress)="onkey($event, rows.value, cols.value, mines.value)"
+                (keyup)="diff(rows.value, cols.value, mines.value)" value="10" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>colums</mat-label>
-            <input matInput #cols (keypress)="onkey($event, rows.value, cols.value, mines.value)" (keyup)="diff(rows.value, cols.value, mines.value)"
-                value="10" />
+            <input matInput #cols (keypress)="onkey($event, rows.value, cols.value, mines.value)"
+                (keyup)="diff(rows.value, cols.value, mines.value)" value="10" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>mines</mat-label>
-            <input matInput #mines (keypress)="onkey($event, rows.value, cols.value, mines.value)" (keyup)="diff(rows.value, cols.value, mines.value)"
-                value="15" />
+            <input matInput #mines (keypress)="onkey($event, rows.value, cols.value, mines.value)"
+                (keyup)="diff(rows.value, cols.value, mines.value)" value="15" />
         </mat-form-field>
         <div class="appl" (click)="input(rows.value, cols.value, mines.value)">apply</div>
         <div style="font-size: 12px; text-align: center;"> Difficulty: {{difficulty}}</div>
