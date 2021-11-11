@@ -1,6 +1,6 @@
 <div class="bla" [ngStyle]="{'width': 30 * panelinrows + 'px' }">
     <div class="input">
-        <div style="font-size: 11px; text-align: center;">Here you can create your own minefield.</div>
+        <div style="font-size: 11px; text-align: center;">Here you can create your own minefield.<br>default: 10/10/15</div>
         <mat-form-field>
             <mat-label>rows</mat-label>
             <input matInput #rows (keypress)="onkey($event)" value="10" />
@@ -28,7 +28,7 @@
             <div [hidden]="mousd === false || board.afterend === true" >😬</div>
             <div [hidden]="board.winner === false" >😀</div>
         </div>
-        <div class="mines"><div (click)="stoptimer()">Stop the timer manually</div></div>
+        <div class="mineswrap"><div class="mines"><div style="font-size: 10px;">mines left:</div>{{board.minesleft}}</div></div>
     </div>
     <div class="field">
         <button (click)="clicked(panel)" (mousedown)="mousedown()" (mouseup)="mouseup()" (contextmenu)="flagged(panel)"
@@ -38,7 +38,7 @@
                 <div class="value"
                     [ngStyle]="{'background-color': panel.flag === true && panel.value === '💣' ? 'green' : 'default'}"
                     [ngStyle]="{'background-color': panel.flag === true && panel.value !== '💣' ? 'red' : 'default'}">
-                    {{panel.value}}</div>
+                     {{panel.value}}</div>
             </div>
             <!--<div style="font-size: 10px; float: left;">{{panel.id}}</div>-->
             <div *ngIf="panel.flag === true && panel.revealed === false">🚩</div>

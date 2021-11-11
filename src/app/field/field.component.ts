@@ -15,7 +15,7 @@ export class FieldComponent implements OnInit {
 
   rows: number = 10;
   panelinrows: number = 10;
-  minesnum: number = 15;
+  minesnum: number = 10;
 
   inter: any;
   hours: string = "00";
@@ -49,10 +49,14 @@ export class FieldComponent implements OnInit {
           if (panelsn === minesn) {
             alert("No");
           } else {
-            this.panelsnum = panelsn;
-            this.panelinrows = colsn;
-            this.minesnum = minesn;
-            this.nw();
+            let lottamines: boolean = true;
+            if (+panelsn / +2 < minesn) {lottamines = confirm("These are a LOT of mines. Your chance of exploding on the first click is bigger than 50%. Are you sure that you want that?");}
+            if(lottamines === true){
+              this.panelsnum = panelsn;
+              this.panelinrows = colsn;
+              this.minesnum = minesn;
+              this.nw();
+            }
           }
         } else { alert("Oops. You tried to put " + minesn + " mines on a field with just " + panelsn + " tiles"); }
       } else { alert("Your field must at least be 10 by 10 or its not much of a field.(And its messing up the gui)"); }

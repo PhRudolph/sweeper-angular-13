@@ -17,7 +17,7 @@ So you win, if you revealed every tile that doesnt have a bomb.
 
 
 Features: 
-When you suspect that a tile has a bomb, you can put a flag on a field that makes it impossible for you to click on it on accident.
+When you suspect that a tile has a bomb, you can put a flag on a field with right click that makes it impossible for you to click on it on accident.
 It can always be removed again.
 
 If there is a whole bunch of nothing in a bigger area, dont worry. You wont need to click every tile. Instead it will be revealed automatically.

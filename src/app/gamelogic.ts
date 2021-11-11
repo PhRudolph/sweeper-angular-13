@@ -6,7 +6,7 @@ export class Field {
   afterend: boolean = false;
   gameinprogress: boolean = false;
   winner: boolean = false;
-
+  minesleft: number = 0;
 
   constructor(tiles: number, inrows: number, mines: number) {
 
@@ -16,9 +16,14 @@ export class Field {
 
     for (let lp = 0; lp < mines; lp++) {                                              //bomb generation
       const id = Math.floor(Math.random() * tiles);                                             //generate random id and put a bomb there
-      this.panels[id].value = "💣";
       console.log(+lp+ +1 + "th mine at: " + id);
+      if(this.panels[id].value === "💣"){
+        lp--;
+        console.log("duplicate");
+      }
+      this.panels[id].value = "💣";
     }
+    this.minesleft = mines;
 
     for (let tilelop = 0; tilelop < tiles; tilelop++) {                               //adjacency generation:
       //console.log("____Tile id: " + tilelop);
@@ -107,7 +112,7 @@ export class Field {
         count++
       }
     }
-    //console.log("closed panels: " + count);
+    //console.log("closed panels left: " + count);
     if (count === mines) {                                                                      //execute winscreen when there are as many unrevealed tiles as bombs
       setTimeout(function () { alert("Congratulations. You won"); }, 500);
       this.gameinprogress = false;
@@ -160,10 +165,12 @@ export class Field {
     if (panel.flag === false && panel.revealed === false) {
       //console.log("flagged: " + panel.id);
       panel.flag = true;
+      this.minesleft--;
     } else {
       if (panel.flag == true && panel.revealed === false) {
         //console.log("unflagged: " + panel.id);
         panel.flag = false;
+        this.minesleft++;
       }
     }
   }
