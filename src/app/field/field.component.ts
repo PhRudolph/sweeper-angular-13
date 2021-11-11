@@ -39,12 +39,7 @@ export class FieldComponent implements OnInit {
     let minesn: number = parseInt(mines);
 
     let panelsn: number = +rowsn * +colsn;
-    /*
-        console.log("rows: " + rowsn);
-        console.log("cols: " + colsn);
-        console.log("tiles: " + panelsn);
-        console.log("mines: " + minesn);
-    */
+
     if (panelsn > 0 && colsn > 0 && rowsn > 0) {
       if (rowsn >= 10 && colsn >= 10) {
         if (panelsn >= minesn) {
@@ -67,8 +62,6 @@ export class FieldComponent implements OnInit {
   }
 
   nw() {
-    console.log("Number of Panels: " + this.panelsnum);
-    console.log("Number of Mines: " + this.minesnum);
     this.stoptimer();
     this.board = new Field(this.panelsnum, this.panelinrows, this.minesnum);
     this.board.afterend = false;
