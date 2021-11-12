@@ -50,7 +50,8 @@
                      {{panel.value}}
                 </div>
             </div>
-            <div *ngIf="panel.flag === true && panel.revealed === false">🚩</div>
+            
+            <div *ngIf="panel.flag === true && panel.revealed === false || panel.value === '💣' && board.winner === true">🚩</div>
         </button>
     </div>
 </div>
