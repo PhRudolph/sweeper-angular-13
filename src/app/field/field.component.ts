@@ -69,14 +69,14 @@ export class FieldComponent implements OnInit {
   }
 
   clicked(panel: Panel) {                                                               //click handler function
-    if (this.board.gameinprogress === false && this.board.afterend === false) {
-      this.starttimer();
-    }
-
-    this.board.click(panel, this.panelinrows, this.panelsnum, this.minesnum);
-
-    if (this.board.gameinprogress === false && this.board.afterend === true) {
-      this.stoptimer();
+    if (this.board.winner === false) {
+      if (this.board.gameinprogress === false && this.board.afterend === false) {
+        this.starttimer();
+      }
+      this.board.click(panel, this.panelinrows, this.panelsnum, this.minesnum);
+      if (this.board.gameinprogress === false && this.board.afterend === true) {
+        this.stoptimer();
+      }
     }
   }
   flagged(panel: Panel) {                                                               //rightclick handler function
@@ -100,7 +100,7 @@ export class FieldComponent implements OnInit {
   starttimer() {                                                                        //function that starts a timer
     let sec = 0;
     let min = 0;
-    let hrs = 0;                                                                        
+    let hrs = 0;
     this.inter = setInterval(() => {
       sec++;
       if (sec === 60) {
