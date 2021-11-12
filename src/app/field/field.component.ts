@@ -85,7 +85,7 @@ export class FieldComponent implements OnInit {
   }
 
 
-  onkey(event: any, rows: string, cols: string, mines: string): boolean {                                                          //function that on key press blocks keys which are not numbers
+  onkey(event: any, rows: string, cols: string, mines: string): boolean {               //function that on key press blocks keys which are not numbers
     const charCode = (event.which) ? event.which : event.keyCode;
     if (charCode === 13) {
       this.input(rows, cols, mines);
@@ -100,7 +100,7 @@ export class FieldComponent implements OnInit {
   starttimer() {                                                                        //function that starts a timer
     let sec = 0;
     let min = 0;
-    let hrs = 0;
+    let hrs = 0;                                                                        
     this.inter = setInterval(() => {
       sec++;
       if (sec === 60) {
