@@ -43,7 +43,7 @@ export class Field {
 
   getadjacent(tile: number, inrows: number, tiles: number) {                          //function that calculates adjacent tiles
 
-    let top = tile - inrows;                                                                  //declaring pseudo adjacent tiles
+    let top = tile - inrows;                                                                    //declaring pseudo adjacent tiles
     let topright = tile - inrows + 1;
     let right = tile + 1;
     let botright = tile + inrows + 1;
@@ -110,6 +110,7 @@ export class Field {
       this.gameinprogress = false;
       this.afterend = true;
       this.winner = true;
+      this.minesleft = 0;
     }
   }
 
