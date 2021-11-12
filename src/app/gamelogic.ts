@@ -130,7 +130,6 @@ export class Field {
           }
         }
         if (this.panels[currad].value === "💣" && this.panels[currad].flag === false) {
-          this.panels[currad].revealed = false;
           this.gameover(this.panels[currad], tiles);
         }
       }
