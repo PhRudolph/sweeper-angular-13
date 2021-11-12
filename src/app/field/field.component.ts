@@ -49,7 +49,7 @@ export class FieldComponent implements OnInit {
             let lottamines: boolean = true;
             let lottatiles: boolean = true;
             if (panelsn / 2 < minesn) { lottamines = confirm("These are a LOT of mines. Your chance of exploding on the first click is bigger than 50%. Are you sure that you want that?"); }
-            if (panelsn > 40000){lottatiles = confirm("Your browser might not be able to handle a field this big. Do not click on ok unless you are prepared for your browser crashing."); }
+            if (panelsn > 40000){lottatiles = confirm("Your browser might not be able to handle a field this big. Do not click on OK unless you are prepared for your browser crashing."); }
             if (lottamines === true && lottatiles === true) {
               this.panelsnum = panelsn;
               this.panelinrows = colsn;
