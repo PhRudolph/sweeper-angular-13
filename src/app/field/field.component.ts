@@ -87,7 +87,7 @@ export class FieldComponent implements OnInit {
 
   onkey(event: any, rows: string, cols: string, mines: string): boolean {                                                          //function that on key press blocks keys which are not numbers
     const charCode = (event.which) ? event.which : event.keyCode;
-    if(charCode === 13){
+    if (charCode === 13) {
       this.input(rows, cols, mines);
     }
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {

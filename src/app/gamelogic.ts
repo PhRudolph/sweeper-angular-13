@@ -105,7 +105,7 @@ export class Field {
         count++;
       }
     }
-    if (count === mines) {                                                                      //execute winscreen when there are as many unrevealed tiles as bombs
+    if (count === mines && this.winner === false) {                                             //execute winscreen when there are as many unrevealed tiles as bombs
       setTimeout(function () { alert("Congratulations. You won"); }, 500);
       this.gameinprogress = false;
       this.afterend = true;
