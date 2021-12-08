@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './routing.module';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,11 +10,13 @@ import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { FieldComponent } from './field/field.component';
+import { TutorialComponent } from './tutorial/tutorial.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FieldComponent
+    FieldComponent,
+    TutorialComponent,
   ],
   imports: [
     BrowserModule,

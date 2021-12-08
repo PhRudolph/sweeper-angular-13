@@ -16,20 +16,22 @@ export class Field {
 
     for (let lp = 0; lp < mines; lp++) {                                              //bomb generation
       const id = Math.floor(Math.random() * tiles);                                             //generate random id and put a bomb there
-      if(this.panels[id].value === "💣"){
+      if (this.panels[id].bomb === true) {
         lp--;
+      } else {
+        this.panels[id].bomb = true;
+        this.panels[id].value = "💣";
       }
-      this.panels[id].value = "💣";
     }
     this.minesleft = mines;
 
     for (let tilelop = 0; tilelop < tiles; tilelop++) {                               //adjacency generation:
       let adjacenttiles = this.getadjacent(tilelop, inrows, tiles);                             //calling adjacency algorithm
 
-      if (this.panels[tilelop].value !== "💣") {
+      if (this.panels[tilelop].bomb === false) {
         for (let loop = 0; loop < adjacenttiles.length; loop++) {
           let curradjtile = adjacenttiles[loop];
-          if (this.panels[curradjtile].value === "💣") {
+          if (this.panels[curradjtile].bomb === true) {
             this.panels[tilelop].adjmines++;
           }
         }
@@ -43,22 +45,22 @@ export class Field {
 
   getadjacent(tile: number, inrows: number, tiles: number) {                          //function that calculates adjacent tiles
 
-    let top = +tile - +inrows;                                                                  //declaring pseudo adjacent tiles
-    let topright = +tile - +inrows + +1;
-    let right = +tile + +1;
-    let botright = +tile + +inrows + +1;
-    let bot = +tile + +inrows;
-    let botleft = +tile + +inrows - +1;
-    let left = +tile - +1;
-    let topleft = +tile - +inrows - +1;
+    let top = tile - inrows;                                                                    //declaring pseudo adjacent tiles
+    let topright = tile - inrows + 1;
+    let right = tile + 1;
+    let botright = tile + inrows + 1;
+    let bot = tile + inrows;
+    let botleft = tile + inrows - 1;
+    let left = tile - 1;
+    let topleft = tile - inrows - 1;
     let adjacents = [top, topright, right, botright, bot, botleft, left, topleft];
     let trueadjacents = [];
 
     for (let loop = 0; loop < 8; loop++) {
       let curradjtile = adjacents[loop];                                              //The following if statements exclude imaginary tiles meaning adjacent tiles that are out of bound or behind a line break:
       if (curradjtile >= 0 && curradjtile < tiles) {                                            //if the tile is on the board
-        if (+tile % +inrows === 0 && +curradjtile % +inrows === +inrows - +1) { } else {        //unless the tile is on the left edge and its adjacent tile on the right edge
-          if (+tile % +inrows === +inrows - +1 && +curradjtile % +inrows === 0) { } else {      //vice versa
+        if (tile % inrows === 0 && curradjtile % inrows === inrows - 1) { } else {        //unless the tile is on the left edge and its adjacent tile on the right edge
+          if (tile % inrows === inrows - 1 && curradjtile % inrows === 0) { } else {      //vice versa
             trueadjacents.push(curradjtile)                                                     //push it as a true adjacent tile
           }
         }
@@ -74,13 +76,13 @@ export class Field {
       this.winner = false;
     }
 
-    if (panel.value === "💣" && panel.flag === false) {                               //game over
+    if (panel.bomb === true && panel.flag === false) {                               //game over
       this.gameover(panel, tiles);
     }
 
-    if (panel.revealed === false && panel.flag === false && panel.value !== "💣") {   //revealing:
+    if (panel.revealed === false && panel.flag === false && panel.bomb === false) {   //revealing:
       panel.revealed = true;
-      if (panel.value === " ") {                                                                //when clicking an empty field
+      if (panel.adjmines === 0) {                                                                //when clicking an empty field
         this.reveal(panel.id, inrows, tiles);
       }
     }
@@ -102,14 +104,15 @@ export class Field {
     let count = 0;                                                                    //win game
     for (let all = 0; all < tiles; all++) {                                                     //on every click count through all unrevealed tiles
       if (this.panels[all].revealed === false) {
-        count++
+        count++;
       }
     }
-    if (count === mines) {                                                                      //execute winscreen when there are as many unrevealed tiles as bombs
+    if (count === mines) {                                                            //execute winscreen when there are as many unrevealed tiles as bombs
       setTimeout(function () { alert("Congratulations. You won"); }, 500);
       this.gameinprogress = false;
       this.afterend = true;
       this.winner = true;
+      this.minesleft = 0;
     }
   }
 
@@ -124,12 +127,11 @@ export class Field {
         let currad = temparr[ad];
         if (this.panels[currad].revealed === false && this.panels[currad].flag === false) {
           this.panels[currad].revealed = true;
-          if (this.panels[currad].value === " ") {
+          if (this.panels[currad].adjmines === 0) {
             torev.push(currad);                                                                 //push certain ids of adjacent tiles to the array
           }
         }
-        if (this.panels[currad].value === "💣" && this.panels[currad].flag === false) {
-          this.panels[currad].revealed = false;
+        if (this.panels[currad].bomb === true && this.panels[currad].flag === false) {
           this.gameover(this.panels[currad], tiles);
         }
       }
@@ -139,6 +141,7 @@ export class Field {
 
   gameover(panel: Panel, tiles: number) {                                             //Game Over function
     panel.value = "💥";
+
     if (this.afterend === false) {
       for (let loop = 0; loop < tiles; loop++) {
         this.panels[loop].revealed = true;

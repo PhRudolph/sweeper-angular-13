@@ -8,7 +8,8 @@ Under that tile can be a bomb, a number or nothing.
 If you click on nothing or a number, you are safe.
 The number indicates how many bombs are on adjacent tiles.
 If you click on a bomb, then you loose.
-You can always start a new game by clicking on the big smiley in the middle.
+
+You can always start a new game by clicking on the big smiley button in the middle.
 
 
 How to win?:
@@ -17,6 +18,7 @@ So you win, if you revealed every tile that doesnt have a bomb.
 
 
 Features: 
+
 When you suspect that a tile has a bomb, you can put a flag on a field with right click that makes it impossible for you to click on it on accident.
 It can always be removed again.
 
@@ -25,10 +27,14 @@ If there is a whole bunch of nothing in a bigger area, dont worry. You wont need
 A more advanced feature is that you can click on a number and when there is the same amount of flags around it, it will automatically reveal the tiles the adjacent tiles that dont have a flag.
 But be careful. If your flag is wrong, then it might reveal a bomb and you loose.
 
+For you to be able to fully analyse your exploding, there will be green and red backgrounds that indicate wether or not a flag you placed was on a bomb. 
+Those green bombs you discovered are unexplodable.
+But if you like, you can still explode all the other mines. For fun.
 
 # Sweeper
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.1.
+And with Angular Material version 13.0.0.
 
 ## Development server
 

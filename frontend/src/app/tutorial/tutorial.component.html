@@ -1,0 +1,129 @@
+<div>
+    <button class="realbut" routerLink="">back</button>
+</div>
+<div class="concon">
+    <h3>In this Documentation you are gonna learn how to Minesweeper: </h3>
+    <div>
+        <h4>Input: </h4>
+        <p>With the Input you can customize the dimensions and difficulty of Minesweeper:</p>
+        <div><img src="../../assets/pics/inputex.png" alt="input explanation"></div>
+    </div>
+    <hr>
+    <div>
+        <h4>How to Play:</h4>
+        <p>This is how the default minefield looks like with unrevealed tiles:</p>
+        <div><img src="../../assets/pics/fieldex.png" alt="field explanation"></div>
+        <div class="flex">
+            <span>You reveal a tile with</span>
+            <span><img src="../../assets/pics/leftclick.jpg" alt="left click" height="20px"></span>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <h4>How to win:</h4>
+        <p>You need to reveal <b>all</b> the tiles that dont have a bomb:</p>
+        <p>You can encounter:</p>
+        <table>
+            <tr>
+                <td>A bomb </td>
+                <td><img class="smolpic" src="../../assets/pics/bomb.png" alt="Bomb pic"></td>
+                <td>
+                    <div class="flex">
+                        <span>Means Gameover</span>
+                        <span><img class="smolpic" src="../../assets/pics/explosion.png" alt="Explosion pic"></span>
+                    </div>
+                </td>
+                <td rowspan="4" class="revdemo">
+                    <img src="../../assets/pics/Screenshot17.jpg" alt="reveal demo" height="200px">
+                </td>
+            </tr>
+            <tr>
+                <td>Nothing</td>
+                <td><img class="smolpic" src="../../assets/pics/rev.png" alt="Revealed tile pic"></td>
+                <td>Will reveal all other empty tiles around it and their adjacents. Like this &rarr;</td>
+            </tr>
+            <tr>
+                <td>A number</td>
+                <td><img class="smolpic" src="../../assets/pics/2.png" alt="tile with a number pic"></td>
+                <td>Shows number of adjacent mines around it.<br>
+                    Some examples to demonstrate that &darr;</td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div class="flex">
+                        <div class="subflex" style="margin-left: 5%;">
+                            <h5>2 adj mines:</h5>
+                            <img src="../../assets/pics/adj2.png" alt="2 in middle" height="60px">
+                        </div>
+                        <span class="lilarrow">&rarr;</span>
+                        <div class="subflex">
+                            <h5>fully revealed:</h5>
+                            <img src="../../assets/pics/adj2rev.png" alt="2 in middle adjs revealed" height="60px">
+                        </div>
+                        <div class="subflex" style="margin-left: 16%;">
+                            <h5>example with 3:</h5>
+                            <img src="../../assets/pics/adj3.png" alt="3 in middle" height="60px">
+                        </div>
+                        <span class="lilarrow">&rarr;</span>
+                        <div class="subflex" style="margin-right: 5%;">
+                            <h5>revealed:</h5>
+                            <img src="../../assets/pics/revealed3.png" alt="3 in middle adjs revealed" height="60px">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table style="margin-top: 10px;">
+            <tr>
+                <td>Use the numbers to figure out where the bombs are and step around them or
+                    <a href="/documentation/#flag">flag</a> them.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div style="text-align:center; display: inline-block;">
+                        <div>A win could look like this: </div>
+                        <img src="../../assets/pics/win.png" alt="win field pic" height="250px">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Additionally a win alert will pop up and congratulate you.
+                </td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <div>
+        <h4>Features that make life easier:</h4>
+
+        <div class="flex" id="flag">
+            <span>When you suspect that a tile has a bomb, you can put a flag</span>
+            <span><img src="../../assets/pics/flag.png" alt="flag" height="20px"></span>
+            <span>on a tile with</span>
+            <span><img src="../../assets/pics/rightclick.jpg" alt="right click" height="20px"></span>
+        </div>
+        They make it impossible for you to reveal it.
+        <div class="flex" style="margin-top: 5px;">
+            <span>But you can always remove it again with</span>
+            <span><img src="../../assets/pics/rightclick.jpg" alt="right click" height="20px"></span>
+        </div>
+        You can win without flags but they will help you remember and with the next feature:
+
+        A more advanced feature is that you can click on a number.
+        If the amount of adjacent flats is the same as the number, then it will on click reveal all other adjacent
+        tiles.
+
+        But be careful. If your flag is wrong, then it might reveal a bomb and you loose.
+
+        <p>For you to be able to fully analyse your exploding, <br>
+            there will be green and red backgrounds that indicate wether or not a flag you placed was on a bomb.<br>
+            Those green bombs you discovered are unexplodable.<br>
+            But if you like, you can still explode all the other mines. For fun.</p>
+    </div>
+    <div>
+        <button class="realbut" routerLink="">back</button>
+    </div>
+    <p>.</p>
+</div>

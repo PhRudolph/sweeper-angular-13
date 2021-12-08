@@ -1,0 +1,55 @@
+parameters:
+  azureServiceConnection: "pfr-sp"
+  projectName: "pfr-playground"
+  terraformVersion: "0.14.11"
+  workingDirectory: "$(System.DefaultWorkingDirectory)"
+  resourceGroupName: "Minesweeper"
+  tfstorageAccName: "pfrterraform"
+  stage: build
+
+steps:
+- task: Bash@3
+  displayName: "Terraform fmt check"
+  inputs:
+    targetType: "inline"
+    script: terraform fmt -check -recursive -diff ${{ parameters.workingDirectory }}
+
+- task: TerraformTaskV1@0
+  displayName: "Terraform init"
+  inputs:
+    provider: "azurerm"
+    command: "init"
+    backendServiceArm: ${{ parameters.azureServiceConnection }}
+    backendAzureRmResourceGroupName: ${{ parameters.resourceGroupName }}
+    backendAzureRmStorageAccountName: ${{ parameters.tfstorageAccName }}
+    backendAzureRmContainerName: states
+    backendAzureRmKey: "${{ parameters.projectName }}.tfstate"
+    workingDirectory: '${{ parameters.workingDirectory }}/terraform'
+    commandOptions: '-reconfigure'
+
+- task: TerraformTaskV1@0
+  displayName: "Terraform plan"
+  inputs:
+    command: "plan"
+    workingDirectory: ${{ parameters.workingDirectory }}/terraform
+    environmentServiceNameAzureRM: ${{ parameters.azureServiceConnection }}
+
+- task: ArchiveFiles@2
+  inputs:
+    includeRootFolder: false
+    rootFolderOrFile: ${{ parameters.workingDirectory }}/terraform
+    archiveType: tar
+    archiveFile: terraform-live.tar
+
+- task: AzureCLI@2
+  displayName: Copy plan to Storage
+  inputs:
+    azureSubscription: ${{ parameters.azureServiceConnection }}
+    scriptType: bash
+    scriptLocation: inlineScript
+    inlineScript: |
+      az storage blob upload \
+        --file terraform-live.tar \
+        --name "$(Build.BuildNumber).tar" \
+        --account-name "${{ parameters.tfstorageAccName }}" \
+        --container-name plans

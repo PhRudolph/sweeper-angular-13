@@ -3,6 +3,7 @@ export class Panel{         //default panel properties
     revealed = false;
     adjmines = 0;
     flag = false;
+    bomb = false;
 
     id: number;
     constructor(takid: number){ 

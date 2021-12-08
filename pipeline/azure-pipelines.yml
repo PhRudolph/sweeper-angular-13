@@ -1,0 +1,88 @@
+# Node.js with Angular
+# Build a Node.js project that uses Angular.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+- name: terraformVersion
+  value: '0.14.11'
+- name: serviceConnection
+  value: 'pfr-sp'
+
+stages:
+- stage: build
+  jobs:
+  - job: build
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '16.11.X'
+
+      - task: Npm@1
+        displayName: 'Angular CLI'
+        inputs:
+          command: custom
+          customCommand: 'install @angular/cli@13.0.0'
+          workingDir: frontend
+
+      - task: Npm@1
+        displayName: 'npm ci'
+        inputs:
+          command: custom
+          customCommand: ci
+          workingDir: frontend
+
+      - task: Npm@1
+        displayName: 'npm run build prod'
+        inputs:
+          command: custom
+          workingDir: frontend
+          customCommand: run build --configuration=production
+
+      - task: PublishPipelineArtifact@1
+        displayName: 'Publish Artifact: frontend'
+        inputs:
+          targetPath: '$(System.DefaultWorkingDirectory)/frontend/dist'
+          ArtifactName: frontend
+
+  - job: terraformplan
+    steps:
+      - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
+        displayName: 'Install Terraform $(terraformVersion)'
+        inputs:
+          terraformVersion: $(terraformVersion)
+      - template: templates/tfplan.yml
+        parameters:
+          stage: 'build'
+
+- stage: deploy
+  condition: and(succeeded('build'), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  jobs:
+  - job: deploy
+    pool: 
+      vmImage: 'ubuntu-latest'
+    steps:
+      - download: current
+      - checkout: none
+        persistCredentials: true
+      - template: templates/tfdeploy.yml
+        parameters:
+          stage: 'deploy'
+
+      - task: AzureCLI@2
+        displayName: Copy files to static web folder
+        inputs:
+          azureSubscription: 'pfr-sp'
+          scriptType: bash
+          scriptLocation: inlineScript
+          inlineScript: |
+            az storage blob upload-batch \
+              --account-name 'pfrminesweeper' \
+              --source '../frontend/sweeper' \
+              --destination \$web
