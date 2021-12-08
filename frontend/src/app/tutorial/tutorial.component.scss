@@ -13,6 +13,8 @@
 }
 .flex {
     display: flex;
+    align-items: center;
+    text-align: center;
 }
 img {
     margin: 0 5px 0 5px;
@@ -28,18 +30,22 @@ img {
     max-height: 10px;
     overflow: visible;
 }
-.subflex{
+.subflexblock{
     width: 16%;
-    text-align: center;
 }
 .mid{
     margin-left: 26%;
 }
 .lilarrow{
     margin-top: 20px;
-    align-self: center;
     width: 4%;
 }
 h5{
     margin: 5px 0;
+}
+.picblock{
+    width: 120px;
+}
+.arrow{
+    margin-top: 40px;
 }
