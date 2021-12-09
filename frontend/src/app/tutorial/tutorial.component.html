@@ -1,16 +1,16 @@
-<div>
-    <button class="realbut" routerLink="">back</button>
-</div>
 <div class="concon">
-    <h3>In this Documentation you are gonna learn how to Minesweeper: </h3>
+    <div style="text-align: right;">
+        <button class="realbut" routerLink="">back</button>
+    </div>
+    <h2>In this Documentation you are gonna learn how to Minesweeper: </h2>
     <div>
-        <h4>Input: </h4>
+        <h3>Input: </h3>
         <p>With the Input you can customize the dimensions and difficulty of Minesweeper:</p>
         <div><img src="../../assets/pics/inputex.png" alt="input explanation"></div>
     </div>
     <hr>
     <div>
-        <h4>How to Play:</h4>
+        <h3>How to Play:</h3>
         <p>This is how the default minefield looks like with unrevealed tiles:</p>
         <div><img src="../../assets/pics/fieldex.png" alt="field explanation"></div>
         <div class="flex">
@@ -20,7 +20,7 @@
     </div>
     <hr>
     <div>
-        <h4>How to win:</h4>
+        <h3>How to win:</h3>
         <p>You need to reveal <b>all</b> the tiles that dont have a bomb:</p>
         <p>You can encounter:</p>
         <table>
@@ -34,7 +34,7 @@
                     </div>
                 </td>
                 <td rowspan="4" class="revdemo">
-                    <img src="../../assets/pics/Screenshot17.jpg" alt="reveal demo" height="200px">
+                    <img src="../../assets/pics/Screenshot17.jpg" alt="reveal demo" height="250px">
                 </td>
             </tr>
             <tr>
@@ -51,21 +51,21 @@
             <tr>
                 <td colspan="3">
                     <div class="flex">
-                        <div class="subflex" style="margin-left: 5%;">
+                        <div class="subflexblock" style="margin-left: 5%;">
                             <h5>2 adj mines:</h5>
                             <img src="../../assets/pics/adj2.png" alt="2 in middle" height="60px">
                         </div>
-                        <span class="lilarrow">&rarr;</span>
-                        <div class="subflex">
+                        <span class="arrowblock2">&rarr;</span>
+                        <div class="subflexblock" style="margin-right: 8%;">
                             <h5>fully revealed:</h5>
                             <img src="../../assets/pics/adj2rev.png" alt="2 in middle adjs revealed" height="60px">
                         </div>
-                        <div class="subflex" style="margin-left: 16%;">
+                        <div class="subflexblock" style="margin-left: 8%;">
                             <h5>example with 3:</h5>
                             <img src="../../assets/pics/adj3.png" alt="3 in middle" height="60px">
                         </div>
-                        <span class="lilarrow">&rarr;</span>
-                        <div class="subflex" style="margin-right: 5%;">
+                        <span class="arrowblock2">&rarr;</span>
+                        <div class="subflexblock" style="margin-right: 5%;">
                             <h5>revealed:</h5>
                             <img src="../../assets/pics/revealed3.png" alt="3 in middle adjs revealed" height="60px">
                         </div>
@@ -75,14 +75,12 @@
         </table>
         <table style="margin-top: 10px;">
             <tr>
-                <td>Use the numbers to figure out where the bombs are and step around them or
-                    <a href="/documentation/#flag">flag</a> them.
-                </td>
+                <td>Use the numbers to figure out where the bombs are and step around them or flag (see flags feature &darr;) them.</td>
             </tr>
             <tr>
                 <td>
-                    <div style="text-align:center; display: inline-block;">
-                        <div>A win could look like this: </div>
+                    <div class="picwithtext">
+                        A win could look like this: <br>
                         <img src="../../assets/pics/win.png" alt="win field pic" height="250px">
                     </div>
                 </td>
@@ -96,8 +94,9 @@
     </div>
     <hr>
     <div>
-        <h4>Features that make life easier:</h4>
+        <h3>Features that make playing easier:</h3>
 
+        <h4>Flags:</h4>
         <div class="flex" id="flag">
             <span>When you suspect that a tile has a bomb, you can put a flag</span>
             <span><img src="../../assets/pics/flag.png" alt="flag" height="20px"></span>
@@ -109,9 +108,24 @@
             <span>But you can always remove it again with</span>
             <span><img src="../../assets/pics/rightclick.jpg" alt="right click" height="20px"></span>
         </div>
-        <p>You can win without flags but they will help you remember and you need them to use the next feature:</p>
+        <table>
+            <tr>
+                <td>This display counts down the bombs you have flagged:</td>
+                <td><img src="../../assets/pics/mines.jpg" alt="mines left display"></td>
+            </tr>
+            <tr>
+                <td>
+                    Keep in mind that this will count wrong flags.<br>
+                    So you might end up with a negative number:</td>
+                <td><img src="../../assets/pics/minesneg.jpg" alt="mines left display"></td>
+                <td>That means <br> you have set more flags than there are bombs.</td>
+            </tr>
+        </table>
+        <p>You <b>can</b> win without flags.<br>
+            But they will help you remember. And you need them to in order to use the next feature:</p>
 
-        <p>This, a little more advanced feature, enables you to click on a number to reveal its surrounding tiles,<br>
+        <h4>Clicking a number:</h4>
+        <p>This, a little more advanced feature, allows you to click on a number to reveal its surrounding tiles,<br>
             <b>if</b> the amount of adjacent flags is the same as the clicked number.<br>
         </p>
         <table>
@@ -120,50 +134,89 @@
                     <div class="flex">
                         <div class="picblock">
                             <h5>That means if you click this 2:</h5>
-                            <img src="../../assets/pics/2ndexamplenumclick.png" alt="2example1" height="80px">
+                            <img src="../../assets/pics/2ndexamplenumclick.png" alt="example1" height="80px">
                         </div>
-                        <div class="arrow">
-                            &rarr;<h5>Because there are <br>
-                                2 flags next to it </h5>
-                            &rarr;
+                        <div class="arrowblock1">
+                            &rarr;<h5>Because there are 2 <br>flags next to it </h5>&rarr;
                         </div>
                         <div class="picblock">
                             <h5>It will open the tiles around it:</h5>
-                            <img src="../../assets/pics/2ndexamplenumclick2.png" alt="2example2" height="80px">
+                            <img src="../../assets/pics/2ndexamplenumclick2.png" alt="example2" height="80px">
                         </div>
-                        <div class="arrow">
+                        <div class="arrowblock1">
                             &rarr;
                         </div>
                         <div class="picblock">
                             <br>
                             <h5>Lets click this 1</h5>
-                            <img src="../../assets/pics/2ndexamplenumclick3.png" alt="2example3" height="80px">
+                            <img src="../../assets/pics/2ndexamplenumclick3.png" alt="example3" height="80px">
                         </div>
-                        <div class="arrow">
+                        <div class="arrowblock1">
                             &rarr;
                         </div>
                         <div class="picblock">
                             <br>
                             <h5>and this 1</h5>
-                            <img src="../../assets/pics/2ndexamplenumclick4.png" alt="2example4" height="80px">
+                            <img src="../../assets/pics/2ndexamplenumclick4.png" alt="example4" height="80px">
                         </div>
                     </div>
                 </td>
             </tr>
         </table>
-        As you can see you can safe a lot of time with this.<br>
+        As you can see you can reveal a lot with this in a short amount of time.<br>
         But it can also be your downfall: <br>
         Because, if your flag is wrong, then this feature will reveal a bomb and you loose.
-        <p>.</p>
-        <!-- Note: sweeper scale = 30(original) to 20(in here) -->
+        <table>
+            <tr>
+                <td>
+                    <div class="flex">
+                        <div class="picblock">
+                            <h5>Wrong flag:</h5>
+                            <img src="../../assets/pics/downfall1.png" alt="downfallexample1" height="80px">
+                        </div>
+                        <div class="arrowblock2">
+                            &rarr;<h5>Clicking on <br>the 1</h5>&rarr;
+                        </div>
+                        <div class="picblock">
+                            <h5>Reveals bomb:</h5>
+                            <img src="../../assets/pics/downfall2.png" alt="downfallexample2" height="80px">
+                        </div>
+                        <div class="arrowblock2">
+                            <h5>and you lost</h5>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
+        <h4>After Gameover:</h4>
         <p>The last feature is for when you already lost:<br>
-        For you to be able to fully analyse your exploding, <br>
-        there will be green and red backgrounds that indicate wether or not a flag you placed was on a bomb.<br>
-        Those green bombs you discovered are unexplodable.<br>
-        But if you like, you can still explode all the other mines. For fun.</p>
+            To know where you went wrong, </p>
+        <table>
+            <tr>
+                <td><img src="../../assets/pics/wrongflag.png" alt="wrong flag" height="25px"></td>
+                <td>A red background tells you that you wrongly flagged a tile as bomb.</td>
+            </tr>
+            <tr>
+                <td><img src="../../assets/pics/corrflag.png" alt="correct flag" height="25px"></td>
+                <td>A green background tells you a correct flag.</td>
+            </tr>
+        </table>
+        <div class="picwithtext">
+            So a loss could look like this: <br>
+            <img src="../../assets/pics/loss.png" alt="loss field" height="250px">
+        </div>
+        <hr>
+        <h3>Final words:</h3>
+        <p> I hope with this documentation/tutorial, you have a basic understanding of the game and how to play it.<br>
+            If not, you can also always ask me personally.</p>
+        <p>gl hf </p>
+        <p> &uarr; (good luck, have fun)</p>
+        <h4 style="margin: 0;">Note: </h4>
+        Minesweeper is currently developed for Mozilla Firefox.<br>
+        Other browsers might display broken or unclear graphic.
     </div>
-    <div>
+    <div style="text-align: right;">
         <button class="realbut" routerLink="">back</button>
     </div>
 </div>

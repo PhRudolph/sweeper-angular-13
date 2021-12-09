@@ -2,7 +2,7 @@ import { Panel } from "./panel";
 
 export class Field {
 
-  public panels: Panel[] = [];
+  panels: Panel[] = [];
   afterend: boolean = false;
   gameinprogress: boolean = false;
   winner: boolean = false;

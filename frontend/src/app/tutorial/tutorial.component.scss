@@ -2,7 +2,6 @@
     cursor: pointer;
     padding: 5px;
     font-size: 14px;
-    float: right;
     margin: 5px;
     width: 60px;
 }
@@ -23,29 +22,37 @@ img {
     float: right;
     text-align: center;
 }
-.smolpic{
+.smolpic {
     height: 20px;
 }
-.revdemo{
+.revdemo {
     max-height: 10px;
     overflow: visible;
 }
-.subflexblock{
+.subflexblock {
     width: 16%;
 }
-.mid{
+.mid {
     margin-left: 26%;
 }
-.lilarrow{
+.lilarrow {
     margin-top: 20px;
     width: 4%;
 }
-h5{
+h5 {
     margin: 5px 0;
 }
-.picblock{
+.picblock {
     width: 120px;
+    margin: 0 5px;
 }
-.arrow{
+.arrowblock1 {
     margin-top: 40px;
+}
+.arrowblock2 {
+    margin-top: 20px;
+}
+.picwithtext {
+    text-align: center;
+    display: inline-block;
 }
