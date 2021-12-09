@@ -122,17 +122,17 @@ export class Field {
     do {                                                                                        //iterate through the array until it is empty
       let currtile = torev[0];
       let temparr = this.getadjacent(currtile, inrows, tiles);
-
+      console.log(torev);
       for (let ad = 0; ad < temparr.length; ad++) {
+        if (this.panels[torev[0]].bomb === true && this.panels[torev[0]].flag === false) {
+          this.gameover(this.panels[torev[0]], tiles);
+        }
         let currad = temparr[ad];
         if (this.panels[currad].revealed === false && this.panels[currad].flag === false) {
           this.panels[currad].revealed = true;
           if (this.panels[currad].adjmines === 0) {
             torev.push(currad);                                                                 //push certain ids of adjacent tiles to the array
           }
-        }
-        if (this.panels[currad].bomb === true && this.panels[currad].flag === false) {
-          this.gameover(this.panels[currad], tiles);
         }
       }
       torev.shift();

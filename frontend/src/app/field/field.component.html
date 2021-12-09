@@ -1,5 +1,5 @@
-<div class="bla" [ngStyle]="{'width': 30 * panelinrows + 'px' }">
-    <div class="tut"><div>Never played?<br>No problem: </div><div routerLink="/documentation" class="fakebut">Documentation</div></div>
+<div class="allcon" [ngStyle]="{'width': 30 * panelinrows + 'px' }">
+    <div style="text-align: center;"><div routerLink="/tutorial" class="fakebut">How to Play</div></div>
     <div class="input">
         <div style="font-size: 11px; text-align: center;">Here you can create your own minefield.<br>default: 10/10/15
         </div>
@@ -51,8 +51,10 @@
                      {{panel.value}}
                 </div>
             </div>
-            
-            <div *ngIf="panel.flag === true && panel.revealed === false || panel.bomb === true && board.winner === true">🚩</div>
+
+            <div
+                *ngIf="panel.flag === true && panel.revealed === false || panel.bomb === true && board.winner === true">
+                🚩</div>
         </button>
     </div>
 </div>
